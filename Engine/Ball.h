@@ -4,6 +4,7 @@
 #include "Rect.h"
 #include "Colors.h"
 #include "Graphics.h"
+#include "Sound.h"
 
 class Ball
 {
@@ -20,6 +21,7 @@ private:
 	Vec2 velocity;
 	Color color;
 	int radius;
+	Sound sound;
 
 private:
 	void CheckCollisionWall(const Rect &bounds);
