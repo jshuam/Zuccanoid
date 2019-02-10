@@ -1,10 +1,10 @@
 #include "Block.h"
 
 Block::Block(Rect rect, Color color)
-{
-	this->rect = rect;
-	this->color = color;
-}
+	:
+	rect(rect),
+	color(color)
+{}
 
 void Block::Draw(Graphics& gfx) const
 {

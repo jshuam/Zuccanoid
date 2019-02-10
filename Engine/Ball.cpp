@@ -1,13 +1,13 @@
 #include "Ball.h"
 
 Ball::Ball(Vec2 pos, Vec2 velocity, Color color, int radius)
-{
-	this->pos = pos;
-	this->velocity = velocity;
-	this->color = color;
-	this->radius = radius;
-	this->sound = Sound(L"Sounds//arkpad.wav");
-}
+	:
+	pos(pos),
+	velocity(velocity),
+	color(color),
+	radius(radius),
+	sound(L"Sounds//arkpad.wav")
+{}
 
 Vec2& Ball::GetPos()
 {
