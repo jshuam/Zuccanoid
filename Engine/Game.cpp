@@ -21,10 +21,12 @@
 #include "MainWindow.h"
 #include "Game.h"
 
-Game::Game( MainWindow& wnd )
+Game::Game(MainWindow& wnd)
 	:
-	wnd( wnd ),
-	gfx( wnd )
+	wnd(wnd),
+	gfx(wnd),
+	ball(Ball(Vec2(150.0f, 150.0f), Vec2(300.0f, 300.0f), Colors::Cyan, 8)),
+	bounds(0, 0, Graphics::ScreenWidth, Graphics::ScreenHeight)
 {
 }
 

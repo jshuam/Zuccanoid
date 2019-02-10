@@ -20,10 +20,13 @@
  ******************************************************************************************/
 #pragma once
 
+#include "Ball.h"
+#include "Block.h"
+#include "FrameTimer.h"
+#include "Graphics.h"
 #include "Keyboard.h"
 #include "Mouse.h"
-#include "Graphics.h"
-#include "Block.h"
+#include "Rect.h"
 
 class Game
 {
@@ -41,6 +44,9 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
+	FrameTimer frameTimer;
+	Ball ball;
+	Rect bounds;
 	/********************************/
 	/*  User Variables              */
 	/********************************/
