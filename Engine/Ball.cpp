@@ -27,29 +27,31 @@ void Ball::Move(float deltaTime, const Rect &bounds)
 {
 	pos += velocity * deltaTime;
 
-	CheckCollisionWall(deltaTime, bounds);
+	CheckCollisionWall(bounds);
 }
 
-void Ball::CheckCollisionWall(float deltaTime, const Rect &bounds)
+void Ball::CheckCollisionWall(const Rect &bounds)
 {
-	if(GetRect().left <= bounds.left)
-	{
-		velocity.x = fabs(velocity.x);
-		pos.x += velocity.x * deltaTime;
-	}
-	if(GetRect().top <= bounds.top)
-	{
-		velocity.y = fabs(velocity.y);
-		pos.y += velocity.y * deltaTime;
-	}
-	if(GetRect().right >= bounds.right)
+	Rect rect = GetRect();
+
+	if(rect.left <= bounds.left)
 	{
 		velocity.x = -velocity.x;
-		pos.x += velocity.x * deltaTime;
+		pos.x -= rect.left;
 	}
-	if(GetRect().bottom >= bounds.bottom)
+	if(rect.top <= bounds.top)
 	{
 		velocity.y = -velocity.y;
-		pos.y += velocity.y * deltaTime;
+		pos.y -= rect.top;
+	}
+	if(rect.right >= bounds.right)
+	{
+		velocity.x = -velocity.x;
+		pos.x += bounds.right - rect.right;
+	}
+	if(rect.bottom >= bounds.bottom)
+	{
+		velocity.y = -velocity.y;
+		pos.y += bounds.bottom - rect.bottom;
 	}
 }

@@ -22,5 +22,5 @@ private:
 	int radius;
 
 private:
-	void CheckCollisionWall(float deltaTime, const Rect &bounds);
+	void CheckCollisionWall(const Rect &bounds);
 };

@@ -25,7 +25,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	ball(Ball(Vec2(150.0f, 150.0f), Vec2(300.0f, 300.0f), Colors::Cyan, 8)),
+	ball(Ball(Vec2(Graphics::ScreenWidth / 2, Graphics::ScreenHeight / 2), Vec2(300.0f, 300.0f), Colors::Cyan, 8)),
 	bounds(0, 0, Graphics::ScreenWidth, Graphics::ScreenHeight)
 {
 }
@@ -40,8 +40,11 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	float deltaTime = frameTimer.Mark();
+	ball.Move(deltaTime, bounds);
 }
 
 void Game::ComposeFrame()
 {
+	ball.Draw(gfx);
 }
