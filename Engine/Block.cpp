@@ -8,7 +8,7 @@ Block::Block(Rect rect, Color color)
 
 void Block::Draw(Graphics& gfx) const
 {
-	gfx.DrawRect(rect, Colors::Blue);
+	gfx.DrawRect(rect, color);
 }
 
 Rect Block::GetRect() const

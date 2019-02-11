@@ -9,6 +9,7 @@ public:
 	Block() = default;
 	Block(Rect rect, Color color);
 	void Draw(Graphics& gfx) const;
+
 	Rect GetRect() const;
 
 private:

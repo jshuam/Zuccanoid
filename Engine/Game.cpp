@@ -1,5 +1,5 @@
-/****************************************************************************************** 
- *	Chili DirectX Framework Version 16.07.20											  *	
+/******************************************************************************************
+ *	Chili DirectX Framework Version 16.07.20											  *
  *	Game.cpp																			  *
  *	Copyright 2016 PlanetChili.net <http://www.planetchili.net>							  *
  *																						  *
@@ -29,17 +29,22 @@ Game::Game(MainWindow& wnd)
 	bounds(0, 0, Graphics::ScreenWidth, Graphics::ScreenHeight)
 {
 	Color blockColors[4] = {Colors::Red, Colors::Green, Colors::Blue, Colors::Yellow};
-	for(int i = 0; i < nBlocks; i++)
+
+	for(int y = 0; y < nBlocksY; y++)
 	{
-		Vec2 topLeft = Vec2(i * blockOffset, i * blockOffset);
-		Rect rect = Rect(topLeft, blockWidth, blockHeight);
-		blocks[i] = Block(rect, blockColors[i%4]);
+		Color color = blockColors[y % 4];
+		for(int x = 0; x < nBlocksX; x++)
+		{
+			Vec2 topLeft = Vec2(x * blockWidth + blockOffset, y * blockHeight + blockOffset);
+			Rect rect = Rect(topLeft, blockWidth, blockHeight);
+			blocks[(y * int(blockHeight)) + x] = Block(rect, color);
+		}
 	}
 }
 
 void Game::Go()
 {
-	gfx.BeginFrame();	
+	gfx.BeginFrame();
 	UpdateModel();
 	ComposeFrame();
 	gfx.EndFrame();

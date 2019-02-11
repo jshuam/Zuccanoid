@@ -41,9 +41,11 @@ private:
 	void DrawBlocks();
 private:
 	static constexpr int blockOffset = 50;
-	static constexpr int nBlocks = 20;
-	static constexpr float blockWidth = 20.0f;
-	static constexpr float blockHeight = 10.0f;
+	static constexpr int nBlocksX = 20;
+	static constexpr int nBlocksY = 4;
+	static constexpr int nBlocks = nBlocksX * nBlocksY;
+	static constexpr float blockWidth = 35.0f;
+	static constexpr float blockHeight = 30.0f;
 
 	MainWindow& wnd;
 	Graphics gfx;
