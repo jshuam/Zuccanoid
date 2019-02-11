@@ -37,7 +37,7 @@ Game::Game(MainWindow& wnd)
 		{
 			Vec2 topLeft = Vec2(x * blockWidth + blockOffset, y * blockHeight + blockOffset);
 			Rect rect = Rect(topLeft, blockWidth, blockHeight);
-			blocks[(y * int(blockHeight)) + x] = Block(rect, color);
+			blocks[(y * nBlocksX) + x] = Block(rect, color);
 		}
 	}
 }
