@@ -9,6 +9,7 @@ public:
 	Rect(float left, float top, float right, float bottom);
 	Rect(const Vec2& topLeft, const Vec2& topRight);
 	Rect(const Vec2& topLeft, float width, float height);
+	bool Collided(const Rect& rect) const;
 
 public:
 	float left;

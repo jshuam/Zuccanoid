@@ -28,6 +28,13 @@ Game::Game(MainWindow& wnd)
 	ball(Ball(Vec2(Graphics::ScreenWidth / 2, Graphics::ScreenHeight / 2), Vec2(300.0f, 300.0f), Colors::Cyan, 8)),
 	bounds(0, 0, Graphics::ScreenWidth, Graphics::ScreenHeight)
 {
+	Color blockColors[4] = {Colors::Red, Colors::Green, Colors::Blue, Colors::Yellow};
+	for(int i = 0; i < nBlocks; i++)
+	{
+		Vec2 topLeft = Vec2(i * blockOffset, i * blockOffset);
+		Rect rect = Rect(topLeft, blockWidth, blockHeight);
+		blocks[i] = Block(rect, blockColors[i%4]);
+	}
 }
 
 void Game::Go()
@@ -44,7 +51,16 @@ void Game::UpdateModel()
 	ball.Move(deltaTime, bounds);
 }
 
+void Game::DrawBlocks()
+{
+	for(auto& block : blocks)
+	{
+		block.Draw(gfx);
+	}
+}
+
 void Game::ComposeFrame()
 {
 	ball.Draw(gfx);
+	DrawBlocks();
 }

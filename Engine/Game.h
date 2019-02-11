@@ -38,16 +38,17 @@ public:
 private:
 	void ComposeFrame();
 	void UpdateModel();
-	/********************************/
-	/*  User Functions              */
-	/********************************/
+	void DrawBlocks();
 private:
+	static constexpr int blockOffset = 50;
+	static constexpr int nBlocks = 20;
+	static constexpr float blockWidth = 20.0f;
+	static constexpr float blockHeight = 10.0f;
+
 	MainWindow& wnd;
 	Graphics gfx;
 	FrameTimer frameTimer;
 	Ball ball;
 	Rect bounds;
-	/********************************/
-	/*  User Variables              */
-	/********************************/
+	Block blocks[nBlocks];
 };

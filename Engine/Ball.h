@@ -24,5 +24,5 @@ private:
 	Sound sound;
 
 private:
-	void CheckCollisionWall(const Rect &bounds);
+	void CheckCollisionWall(const Rect& bounds);
 };
