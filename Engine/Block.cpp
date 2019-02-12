@@ -6,6 +6,11 @@ Block::Block(Rect rect, Color color)
 	color(color)
 {}
 
+Block::Block(Rect rect, Color color, const int& offset)
+	:
+	Block(rect - offset, color)
+{}
+
 void Block::Draw(Graphics& gfx) const
 {
 	gfx.DrawRect(rect, color);

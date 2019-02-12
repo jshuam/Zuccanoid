@@ -24,3 +24,12 @@ bool Rect::Collided(const Rect& rect) const
 	return left <= rect.right && top <= rect.bottom && right >= rect.left && bottom >= rect.top;
 }
 
+Rect& Rect::operator-(const int& scalar)
+{
+	left += scalar;
+	top += scalar;
+	right -= scalar;
+	bottom -= scalar;
+	return *this;
+}
+

@@ -28,16 +28,16 @@ Game::Game(MainWindow& wnd)
 	ball(Ball(Vec2(Graphics::ScreenWidth / 2, Graphics::ScreenHeight / 2), Vec2(300.0f, 300.0f), Colors::Cyan, 8)),
 	bounds(0, 0, Graphics::ScreenWidth, Graphics::ScreenHeight)
 {
-	Color blockColors[4] = {Colors::Red, Colors::Green, Colors::Blue, Colors::Yellow};
+	Color blockColors[4] = {Colors::MakeRGB(219, 67, 88), Colors::MakeRGB(95, 232, 136), Colors::MakeRGB(89, 151, 249), Colors::MakeRGB(237, 212, 104)};
 
 	for(int y = 0; y < nBlocksY; y++)
 	{
 		Color color = blockColors[y % 4];
 		for(int x = 0; x < nBlocksX; x++)
 		{
-			Vec2 topLeft = Vec2(x * blockWidth + blockOffset, y * blockHeight + blockOffset);
+			Vec2 topLeft = Vec2(x * blockWidth + blockDrawOffset, y * blockHeight + blockDrawOffset);
 			Rect rect = Rect(topLeft, blockWidth, blockHeight);
-			blocks[(y * nBlocksX) + x] = Block(rect, color);
+			blocks[(y * nBlocksX) + x] = Block(rect, color, blockOffset);
 		}
 	}
 }

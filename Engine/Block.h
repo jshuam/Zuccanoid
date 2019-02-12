@@ -8,8 +8,8 @@ class Block
 public:
 	Block() = default;
 	Block(Rect rect, Color color);
+	Block(Rect rect, Color color, const int& offset);
 	void Draw(Graphics& gfx) const;
-
 	Rect GetRect() const;
 
 private:

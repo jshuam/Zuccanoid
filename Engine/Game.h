@@ -40,11 +40,12 @@ private:
 	void UpdateModel();
 	void DrawBlocks();
 private:
-	static constexpr int blockOffset = 50;
-	static constexpr int nBlocksX = 20;
+	static constexpr int blockDrawOffset = 50;
+	static constexpr int blockOffset = 2;
+	static constexpr int nBlocksX = 14;
 	static constexpr int nBlocksY = 4;
 	static constexpr int nBlocks = nBlocksX * nBlocksY;
-	static constexpr float blockWidth = 35.0f;
+	static constexpr float blockWidth = 50.0f;
 	static constexpr float blockHeight = 30.0f;
 
 	MainWindow& wnd;
