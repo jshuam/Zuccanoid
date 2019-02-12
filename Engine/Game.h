@@ -56,4 +56,5 @@ private:
 	Rect bounds;
 	Block blocks[nBlocks];
 	Sound blockSound = Sound(L"Sounds//arkbrick.wav");
+	Keyboard keyboard;
 };
