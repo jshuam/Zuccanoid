@@ -13,7 +13,19 @@ Block::Block(Rect rect, Color color, const int& offset)
 
 void Block::Draw(Graphics& gfx) const
 {
-	gfx.DrawRect(rect, color);
+	if (!destroyed) gfx.DrawRect(rect, color);
+}
+
+bool Block::CheckBallCollision(Ball& ball)
+{
+	if(!destroyed && rect.Collided(ball.GetRect()))
+	{
+		destroyed = true;
+		ball.InvertY();
+		return true;
+	}
+
+	return false;
 }
 
 Rect Block::GetRect() const

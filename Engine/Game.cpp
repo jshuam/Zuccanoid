@@ -54,6 +54,7 @@ void Game::UpdateModel()
 {
 	float deltaTime = frameTimer.Mark();
 	ball.Move(deltaTime, bounds);
+	BlocksCollision();
 }
 
 void Game::DrawBlocks()
@@ -61,6 +62,14 @@ void Game::DrawBlocks()
 	for(auto& block : blocks)
 	{
 		block.Draw(gfx);
+	}
+}
+
+void Game::BlocksCollision()
+{
+	for(auto& block : blocks)
+	{
+		if(block.CheckBallCollision(ball)) blockSound.Play();
 	}
 }
 

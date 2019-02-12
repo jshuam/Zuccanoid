@@ -39,6 +39,7 @@ private:
 	void ComposeFrame();
 	void UpdateModel();
 	void DrawBlocks();
+	void BlocksCollision();
 private:
 	static constexpr int blockDrawOffset = 50;
 	static constexpr int blockOffset = 2;
@@ -54,4 +55,5 @@ private:
 	Ball ball;
 	Rect bounds;
 	Block blocks[nBlocks];
+	Sound blockSound = Sound(L"Sounds//arkbrick.wav");
 };

@@ -12,9 +12,11 @@ public:
 	Ball() = default;
 	Ball(Vec2 pos, Vec2 velocity, Color color, int radius);
 	Vec2& GetPos();
-	Rect& GetRect();
+	Rect GetRect();
 	void Draw(Graphics& gfx) const;
 	void Move(float deltaTime, const Rect &bounds);
+	void InvertY();
+	void InvertX();
 
 private:
 	Vec2 pos;

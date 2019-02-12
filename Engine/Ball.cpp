@@ -14,7 +14,7 @@ Vec2& Ball::GetPos()
 	return pos;
 }
 
-Rect& Ball::GetRect()
+Rect Ball::GetRect()
 {
 	return Rect(pos.x - radius, pos.y - radius, pos.x + radius, pos.y + radius);
 }
@@ -31,6 +31,16 @@ void Ball::Move(float deltaTime, const Rect &bounds)
 	CheckCollisionWall(bounds);
 }
 
+void Ball::InvertY()
+{
+	velocity.y = -velocity.y;
+}
+
+void Ball::InvertX()
+{
+	velocity.x = -velocity.x;
+}
+
 void Ball::CheckCollisionWall(const Rect &bounds)
 {
 	bool collided = false;
@@ -38,25 +48,25 @@ void Ball::CheckCollisionWall(const Rect &bounds)
 
 	if(rect.left <= bounds.left)
 	{
-		velocity.x = -velocity.x;
+		InvertX();
 		pos.x -= rect.left;
 		collided = true;
 	}
 	if(rect.top <= bounds.top)
 	{
-		velocity.y = -velocity.y;
+		InvertY();
 		pos.y -= rect.top;
 		collided = true;
 	}
 	if(rect.right >= bounds.right)
 	{
-		velocity.x = -velocity.x;
+		InvertX();
 		pos.x += bounds.right - rect.right;
 		collided = true;
 	}
 	if(rect.bottom >= bounds.bottom)
 	{
-		velocity.y = -velocity.y;
+		InvertY();
 		pos.y += bounds.bottom - rect.bottom;
 		collided = true;
 	}
