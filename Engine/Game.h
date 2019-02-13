@@ -24,7 +24,7 @@
 #include "Block.h"
 #include "FrameTimer.h"
 #include "Graphics.h"
-#include "Keyboard.h"
+#include "Paddle.h"
 #include "Mouse.h"
 #include "Rect.h"
 
@@ -53,8 +53,8 @@ private:
 	Graphics gfx;
 	FrameTimer frameTimer;
 	Ball ball;
+	Paddle paddle;
 	Rect bounds;
 	Block blocks[nBlocks];
 	Sound blockSound = Sound(L"Sounds//arkbrick.wav");
-	Keyboard keyboard;
 };

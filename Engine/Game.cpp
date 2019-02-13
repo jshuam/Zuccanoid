@@ -26,6 +26,7 @@ Game::Game(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd),
 	ball(Ball(Vec2(Graphics::ScreenWidth / 2, Graphics::ScreenHeight / 2), Vec2(300.0f, 300.0f), Colors::Cyan, 8)),
+	paddle(Colors::MakeRGB(219, 67, 88), Colors::MakeRGB(95, 232, 136)),
 	bounds(0, 0, Graphics::ScreenWidth, Graphics::ScreenHeight)
 {
 	Color blockColors[4] = {Colors::MakeRGB(219, 67, 88), Colors::MakeRGB(95, 232, 136), Colors::MakeRGB(89, 151, 249), Colors::MakeRGB(237, 212, 104)};
@@ -54,6 +55,11 @@ void Game::UpdateModel()
 {
 	float deltaTime = frameTimer.Mark();
 	ball.Move(deltaTime, bounds);
+	if(paddle.CheckBallCollision(ball))
+	{
+		blockSound.Play();
+	}
+	paddle.Move(wnd.kbd, deltaTime);
 	BlocksCollision();
 }
 
@@ -76,5 +82,6 @@ void Game::BlocksCollision()
 void Game::ComposeFrame()
 {
 	ball.Draw(gfx);
+	paddle.Draw(gfx);
 	DrawBlocks();
 }
