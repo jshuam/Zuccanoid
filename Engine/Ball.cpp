@@ -19,6 +19,11 @@ Rect Ball::GetRect()
 	return Rect(pos.x - radius, pos.y - radius, pos.x + radius, pos.y + radius);
 }
 
+Vec2 Ball::GetVelocity()
+{
+	return velocity;
+}
+
 void Ball::Draw(Graphics& gfx) const
 {
 	gfx.DrawCircle(pos.x, pos.y, radius, color);
