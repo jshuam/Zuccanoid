@@ -11,6 +11,7 @@ public:
 	Rect(const Vec2& topLeft, float width, float height);
 	bool Collided(const Rect& rect) const;
 	Rect& operator-(const int& scalar);
+	const Vec2& GetCenter() const;
 
 public:
 	float left;

@@ -20,12 +20,23 @@ bool Block::CheckBallCollision(Ball& ball)
 {
 	if(!destroyed && rect.Collided(ball.GetRect()))
 	{
-		destroyed = true;
-		ball.InvertY();
 		return true;
 	}
-
 	return false;
+}
+
+void Block::CollideWithBall(Ball& ball)
+{
+	destroyed = true;
+	Vec2 ballPos = ball.GetPos();
+	if(ballPos.x >= rect.left && ballPos.x <= rect.right)
+	{
+		ball.InvertY();
+	}
+	else
+	{
+		ball.InvertX();
+	}
 }
 
 Rect Block::GetRect() const

@@ -73,9 +73,36 @@ void Game::DrawBlocks()
 
 void Game::BlocksCollision()
 {
-	for(auto& block : blocks)
+	int closestColDist;
+	int closestBlock;
+	bool collided = false;
+
+	for(int i = 0; i < nBlocks; i++)
 	{
-		if(block.CheckBallCollision(ball)) blockSound.Play();
+		if(blocks[i].CheckBallCollision(ball))
+		{
+			float colDist = (ball.GetPos() - blocks[i].GetRect().GetCenter()).GetLengthSq();
+			if(collided)
+			{
+				if(colDist < closestColDist)
+				{
+					closestColDist = colDist;
+					closestBlock = i;
+				}
+			}
+			else
+			{
+				collided = true;
+				closestColDist = colDist;
+				closestBlock = i;
+			}
+		}
+	}
+
+	if(collided)
+	{
+		blocks[closestBlock].CollideWithBall(ball);
+		blockSound.Play();
 	}
 }
 

@@ -47,11 +47,21 @@ void Paddle::Draw(Graphics& gfx) const
 
 bool Paddle::CheckBallCollision(Ball & ball) const
 {
+	Vec2 ballPos = ball.GetPos();
+
 	bool collided = false;
 	if(ball.GetVelocity().y > 0.0f && rect.Collided(ball.GetRect()))
 	{
-		ball.InvertY();
+		if(ballPos.x >= rect.left && ballPos.x <= rect.right)
+		{
+			ball.InvertY();
+		}
+		else
+		{
+			ball.InvertX();
+		}
 		collided = true;
+		return true;
 	}
 
 	return collided;

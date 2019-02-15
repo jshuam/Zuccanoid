@@ -16,6 +16,7 @@ public:
 	bool CheckBallCollision(Ball& ball);
 
 	Rect GetRect() const;
+	void CollideWithBall(Ball& ball);
 
 private:
 	Rect rect;
