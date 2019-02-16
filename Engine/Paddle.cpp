@@ -47,12 +47,14 @@ void Paddle::Draw(Graphics& gfx) const
 
 bool Paddle::CheckBallCollision(Ball & ball) const
 {
-	Vec2 ballPos = ball.GetPos();
-
-	bool collided = false;
-	if(ball.GetVelocity().y > 0.0f && rect.Collided(ball.GetRect()))
+	if(rect.Collided(ball.GetRect()))
 	{
-		if(ballPos.x >= rect.left && ballPos.x <= rect.right)
+		const Vec2 ballPos = ball.GetPos();
+		if(std::signbit(ball.GetVelocity().x) == std::signbit((ballPos - rect.GetCenter()).x))
+		{
+			ball.InvertY();
+		}
+		else if(ballPos.x >= rect.left && ballPos.x <= rect.right)
 		{
 			ball.InvertY();
 		}
@@ -60,9 +62,8 @@ bool Paddle::CheckBallCollision(Ball & ball) const
 		{
 			ball.InvertX();
 		}
-		collided = true;
 		return true;
 	}
 
-	return collided;
+	return false;
 }
