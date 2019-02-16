@@ -25,7 +25,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	ball(Ball(Vec2(Graphics::ScreenWidth / 2, Graphics::ScreenHeight / 2), Vec2(300.0f, 300.0f), Colors::Cyan, 8)),
+	ball(Ball(Vec2(Graphics::ScreenWidth / 2, Graphics::ScreenHeight / 2), Vec2(-300.0f, -300.0f), Colors::Cyan, 8)),
 	paddle(Colors::MakeRGB(219, 67, 88), Colors::MakeRGB(95, 232, 136)),
 	bounds(0, 0, Graphics::ScreenWidth, Graphics::ScreenHeight)
 {
@@ -73,7 +73,7 @@ void Game::DrawBlocks()
 
 void Game::BlocksCollision()
 {
-	int closestColDist;
+	float closestColDist;
 	int closestBlock;
 	bool collided = false;
 
@@ -81,7 +81,7 @@ void Game::BlocksCollision()
 	{
 		if(blocks[i].CheckBallCollision(ball))
 		{
-			float colDist = (ball.GetPos() - blocks[i].GetRect().GetCenter()).GetLengthSq();
+			const float colDist = (ball.GetPos() - blocks[i].GetCenter()).GetLengthSq();
 			if(collided)
 			{
 				if(colDist < closestColDist)

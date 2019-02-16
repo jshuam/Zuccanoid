@@ -35,6 +35,6 @@ Rect& Rect::operator-(const int& scalar)
 
 const Vec2& Rect::GetCenter() const
 {
-	return Vec2((left + right) / 2, (top + bottom) / 2);
+	return Vec2((left + right) / 2.0f, (top + bottom) / 2.0f);
 }
 

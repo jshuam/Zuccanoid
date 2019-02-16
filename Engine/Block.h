@@ -3,6 +3,7 @@
 #include "Ball.h"
 #include "Rect.h"
 #include "Graphics.h"
+#include <assert.h>
 
 class Block
 {
@@ -16,6 +17,7 @@ public:
 	bool CheckBallCollision(Ball& ball);
 
 	Rect GetRect() const;
+	Vec2 GetCenter() const;
 	void CollideWithBall(Ball& ball);
 
 private:

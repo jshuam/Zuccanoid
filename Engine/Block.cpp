@@ -18,18 +18,20 @@ void Block::Draw(Graphics& gfx) const
 
 bool Block::CheckBallCollision(Ball& ball)
 {
-	if(!destroyed && rect.Collided(ball.GetRect()))
-	{
-		return true;
-	}
-	return false;
+	return !destroyed && rect.Collided(ball.GetRect());
 }
 
 void Block::CollideWithBall(Ball& ball)
 {
-	destroyed = true;
-	Vec2 ballPos = ball.GetPos();
-	if(ballPos.x >= rect.left && ballPos.x <= rect.right)
+	assert(CheckBallCollision(ball));
+
+	const Vec2 ballPos = ball.GetPos();
+
+	if(std::signbit(ball.GetVelocity().x) == std::signbit((ballPos - GetCenter()).x))
+	{
+		ball.InvertY();
+	}
+	else if(ballPos.x >= rect.left && ballPos.x <= rect.right )
 	{
 		ball.InvertY();
 	}
@@ -37,9 +39,16 @@ void Block::CollideWithBall(Ball& ball)
 	{
 		ball.InvertX();
 	}
+
+	destroyed = true;
 }
 
 Rect Block::GetRect() const
 {
 	return rect;
+}
+
+Vec2 Block::GetCenter() const
+{
+	return rect.GetCenter();
 }
