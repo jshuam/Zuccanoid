@@ -46,15 +46,24 @@ Game::Game(MainWindow& wnd)
 void Game::Go()
 {
 	gfx.BeginFrame();
-	UpdateModel();
+	float elapsedTime = frameTimer.Mark();
+	while(elapsedTime > 0.0f)
+	{
+		const float deltaTime = std::min(0.0025f, elapsedTime);
+		UpdateModel(deltaTime);
+		elapsedTime -= deltaTime;
+	}
 	ComposeFrame();
 	gfx.EndFrame();
 }
 
-void Game::UpdateModel()
+void Game::UpdateModel( float deltaTime )
 {
-	float deltaTime = frameTimer.Mark();
-	ball.Move(deltaTime, bounds);
+	ball.Move(deltaTime);
+	if(ball.CheckCollisionWall(bounds))
+	{
+		paddle.ResetCooldown();
+	}
 	if(paddle.CheckBallCollision(ball))
 	{
 		blockSound.Play();
@@ -101,6 +110,7 @@ void Game::BlocksCollision()
 
 	if(collided)
 	{
+		paddle.ResetCooldown();
 		blocks[closestBlock].CollideWithBall(ball);
 		blockSound.Play();
 	}

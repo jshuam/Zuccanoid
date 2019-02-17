@@ -29,11 +29,9 @@ void Ball::Draw(Graphics& gfx) const
 	gfx.DrawCircle(pos.x, pos.y, radius, color);
 }
 
-void Ball::Move(float deltaTime, const Rect &bounds)
+void Ball::Move(float deltaTime)
 {
 	pos += velocity * deltaTime;
-
-	CheckCollisionWall(bounds);
 }
 
 void Ball::InvertY()
@@ -46,7 +44,7 @@ void Ball::InvertX()
 	velocity.x = -velocity.x;
 }
 
-void Ball::CheckCollisionWall(const Rect &bounds)
+bool Ball::CheckCollisionWall(const Rect &bounds)
 {
 	bool collided = false;
 	Rect rect = GetRect();
@@ -76,5 +74,5 @@ void Ball::CheckCollisionWall(const Rect &bounds)
 		collided = true;
 	}
 
-	if(collided) sound.Play();
+	return collided;
 }

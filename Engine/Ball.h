@@ -15,7 +15,8 @@ public:
 	Rect GetRect();
 	Vec2 GetVelocity();
 	void Draw(Graphics& gfx) const;
-	void Move(float deltaTime, const Rect &bounds);
+	void Move(float deltaTime);
+	bool CheckCollisionWall(const Rect& bounds);
 	void InvertY();
 	void InvertX();
 
@@ -25,7 +26,4 @@ private:
 	Color color;
 	int radius;
 	Sound sound;
-
-private:
-	void CheckCollisionWall(const Rect& bounds);
 };

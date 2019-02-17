@@ -45,9 +45,9 @@ void Paddle::Draw(Graphics& gfx) const
 	gfx.DrawRect(tmpRect, mainColor);
 }
 
-bool Paddle::CheckBallCollision(Ball & ball) const
+bool Paddle::CheckBallCollision(Ball& ball)
 {
-	if(rect.Collided(ball.GetRect()))
+	if(!cooldown && rect.Collided(ball.GetRect()))
 	{
 		const Vec2 ballPos = ball.GetPos();
 		if(std::signbit(ball.GetVelocity().x) == std::signbit((ballPos - rect.GetCenter()).x))
@@ -62,8 +62,14 @@ bool Paddle::CheckBallCollision(Ball & ball) const
 		{
 			ball.InvertX();
 		}
+		cooldown = true;
 		return true;
 	}
 
 	return false;
+}
+
+void Paddle::ResetCooldown()
+{
+	cooldown = false;
 }
